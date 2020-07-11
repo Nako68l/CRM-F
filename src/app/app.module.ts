@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { WorkersDashboardComponent } from './workers-dashboard/workers-dashboard.component';
 import {MatTableModule} from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatPaginatorModule} from "@angular/material/paginator";
@@ -13,28 +12,42 @@ import {MatSortModule} from "@angular/material/sort";
 import {CdkTableModule} from "@angular/cdk/table";
 import {MatButtonModule} from "@angular/material/button";
 import {MatDialogModule} from "@angular/material/dialog";
+import {DataService} from "./services/data.service";
+import { WorkersDashboardComponent } from './components/workers-dashboard/workers-dashboard.component';
+import {AddEmployeeDialogComponent} from "./components/dialogs/add-employee.dialog/add-employee.dialog.component";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
+import {MatSelectModule} from "@angular/material/select";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [
     AppComponent,
-    WorkersDashboardComponent
+    WorkersDashboardComponent,
+    AddEmployeeDialogComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
 
-    CdkTableModule,
     MatTableModule,
     MatPaginatorModule,
     MatFormFieldModule,
     MatInputModule,
     MatSortModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule
 
   ],
-  providers: [],
+  providers: [DataService, MatDatepickerModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

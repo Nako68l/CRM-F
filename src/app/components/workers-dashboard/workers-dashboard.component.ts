@@ -2,6 +2,10 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatSort} from "@angular/material/sort";
+import {AddEmployeeDialogComponent} from "../dialogs/add-employee.dialog/add-employee.dialog.component";
+import {Employee} from "../../models/employee";
+import {DataService} from "../../services/data.service";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-workers-dashboard',
@@ -15,7 +19,10 @@ export class WorkersDashboardComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor() {
+  constructor(
+    private dataService: DataService,
+    private dialog: MatDialog,
+  ) {
     // Create 100 users
     const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
 
@@ -38,7 +45,16 @@ export class WorkersDashboardComponent implements OnInit {
   }
 
   addEmployee() {
+    const dialogRef = this.dialog.open(AddEmployeeDialogComponent, {
+      data: { }
+    });
 
+    dialogRef.afterClosed().subscribe((result: Employee) => {
+      console.log('result ', result);
+      if (result) {
+        console.log(this.dataService.getDialogData());
+      }
+    });
   }
 }
 
