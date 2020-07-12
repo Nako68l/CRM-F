@@ -1,4 +1,5 @@
-<h3 mat-dialog-title>Add new Employee</h3>
+<h3 mat-dialog-title *ngIf="!isEdit">Add new Employee</h3>
+<h3 mat-dialog-title  *ngIf="isEdit">Edit Employee</h3>
 
 <form mat-dialog-content (submit)="onSubmit()" #formControl="ngForm">
   <mat-form-field>

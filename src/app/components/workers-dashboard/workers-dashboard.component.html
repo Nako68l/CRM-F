@@ -46,7 +46,7 @@
         </button>
       </th>
       <td mat-cell *matCellDef="let employee; let i=index;" class="text-end">
-        <button mat-icon-button color="accent" (click)="editEmployee()">
+        <button mat-icon-button color="accent" (click)="editEmployee(employee, i)">
           <mat-icon aria-label="Edit">edit</mat-icon>
         </button>
 

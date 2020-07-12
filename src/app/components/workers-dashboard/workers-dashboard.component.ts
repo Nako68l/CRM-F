@@ -71,8 +71,18 @@ export class WorkersDashboardComponent implements OnInit, AfterViewInit {
     });
   }
 
-  editEmployee() {
+  editEmployee(employee: Employee, index: number) {
+    const dialogRef = this.dialog.open(AddEmployeeDialogComponent, {
+      data: { ...employee }
+    });
 
+    dialogRef.afterClosed().subscribe((employee: Employee) => {
+      if (!employee) return;
+      this.employeeApiService.update(employee).subscribe( employee => {
+        this.dataSource.data[index] = employee;
+        this.refreshTable();
+      })
+    });
   }
 
   removeEmployee(employee: Employee, index: number) {

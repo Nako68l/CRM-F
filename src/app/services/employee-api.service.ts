@@ -21,7 +21,11 @@ export class EmployeeApiService {
     return this.http.post<Employee>(this.API_FEATURE, employee);
   }
 
+  update(employee: Employee): Observable<Employee> {
+    return this.http.put<Employee>(`${this.API_FEATURE}/${employee._id}`, employee);
+  }
+
   remove(employee: Employee): Observable<Employee> {
-    return this.http.delete<Employee>(this.API_FEATURE + `/${employee._id}`)
+    return this.http.delete<Employee>(`${this.API_FEATURE}/${employee._id}`)
   }
 }

@@ -13,6 +13,7 @@ import {Position} from "../../../../../../CRM-B/src/enums/position.enum";
 })
 export class AddEmployeeDialogComponent {
 
+  isEdit = false;
   minBirthdayDate = this.getMinBirthdayDate();
   maxBirthdayDate = this.getMaxBirthdayDate();
   GENDERS = Object.values(Gender);
@@ -25,7 +26,10 @@ export class AddEmployeeDialogComponent {
   constructor(private dialogRef: MatDialogRef<AddEmployeeDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public employee: Employee,
               private dataService: DataService) {
-    this.setDefaultValues()
+    this.isEdit = !!employee.fullName
+    if(!this.isEdit) {
+      this.setDefaultValues()
+    }
   }
 
   private setDefaultValues(): void {
