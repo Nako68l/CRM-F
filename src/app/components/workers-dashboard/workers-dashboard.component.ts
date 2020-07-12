@@ -3,7 +3,6 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatSort} from "@angular/material/sort";
 import {AddEmployeeDialogComponent} from "../dialogs/add-employee.dialog/add-employee.dialog.component";
-import {DataService} from "../../services/data.service";
 import {MatDialog} from "@angular/material/dialog";
 import {Employee} from "../../models/employee";
 import {EmployeeApiService} from "../../services/employee-api.service";
@@ -25,7 +24,6 @@ export class WorkersDashboardComponent implements OnInit, AfterViewInit {
 
   constructor(
     private employeeApiService: EmployeeApiService,
-    private dataService: DataService,
     private dialog: MatDialog,
   ) {
     this.dataSource = new MatTableDataSource([]);

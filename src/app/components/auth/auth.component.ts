@@ -25,7 +25,6 @@ export class AuthComponent implements OnInit {
   }
 
   onLogin(creds: AuthCreds) {
-    console.log('login', creds);
     this.authService.login(creds).subscribe(() => {
         alert('success')
         this.router.navigateByUrl('')

@@ -1,7 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {FormControl, Validators} from "@angular/forms";
-import {DataService} from "../../../services/data.service";
 import {Employee} from "../../../models/employee";
 import {Gender} from "../../../../../../CRM-B/src/enums/gender.enum";
 import {Position} from "../../../../../../CRM-B/src/enums/position.enum";
@@ -24,8 +23,7 @@ export class AddEmployeeDialogComponent {
   ]);
 
   constructor(private dialogRef: MatDialogRef<AddEmployeeDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public employee: Employee,
-              private dataService: DataService) {
+              @Inject(MAT_DIALOG_DATA) public employee: Employee) {
     this.isEdit = !!employee.fullName
     if(!this.isEdit) {
       this.setDefaultValues()
@@ -47,9 +45,7 @@ export class AddEmployeeDialogComponent {
     this.dialogRef.close();
   }
 
-  onSubmit(): void {
-    this.dataService.addEmployee(this.employee);
-  }
+  onSubmit(): void {}
 
   private getMaxBirthdayDate(): Date {
     const ADULTHOOD_AGE = 18;
