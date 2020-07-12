@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, Validators} from "@angular/forms";
-import {LoginCreds, RegistrationCreds} from "../../models/registration-creds";
+import {AuthCreds, RegistrationCreds} from "../../models/registration-creds";
+import {AuthService} from "../../services/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-auth',
@@ -9,24 +11,41 @@ import {LoginCreds, RegistrationCreds} from "../../models/registration-creds";
 })
 export class AuthComponent implements OnInit {
 
-  formControl = new FormControl('', [Validators.required]);
+  loginForm = new FormControl('', [Validators.required]);
+  registrationForm = new FormControl('', [Validators.required]);
 
-  constructor() { }
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {
+  }
 
   ngOnInit(): void {
   }
 
-  getErrorMessage() {
-    if (this.formControl.hasError('required')) {
-      return 'You must enter a value';
+  onLogin(creds: AuthCreds) {
+    console.log('login', creds);
+    this.authService.login(creds).subscribe(() => {
+        alert('success')
+        this.router.navigateByUrl('')
+      },
+      err => {
+        console.warn(err);
+        alert('Login failed')
+      })
+  }
+
+  onRegister(creds: RegistrationCreds) {
+    if (creds.password !== creds.passwordConfirmation) {
+      return alert('Passwords do not match')
     }
-  }
-
-  onLogin(value: LoginCreds) {
-    console.log('login', value);
-  }
-
-  onRegister(value: RegistrationCreds) {
-    console.log('register', value);
+    const {passwordConfirmation, ...userCreds} = creds
+    this.authService.register(userCreds).subscribe(() => {
+        this.router.navigateByUrl('')
+      },
+      err => {
+        console.warn(err);
+        alert('Registration failed')
+      })
   }
 }

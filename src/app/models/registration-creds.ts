@@ -1,8 +1,8 @@
-export interface LoginCreds {
+export interface AuthCreds {
   login: string;
   password: string;
 }
 
-export interface RegistrationCreds extends LoginCreds{
+export interface RegistrationCreds extends AuthCreds{
   passwordConfirmation: string;
 }

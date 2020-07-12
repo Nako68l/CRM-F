@@ -3,41 +3,41 @@
   <mat-tab-group mat-stretch-tabs color="primary">
 
     <mat-tab label="Login">
-      <form mat-dialog-content (ngSubmit)="onLogin(formControl.value)" #formControl="ngForm">
+      <form mat-dialog-content (ngSubmit)="onLogin(loginForm.value)" #loginForm="ngForm">
         <mat-form-field>
           <input matInput ngModel name="login" placeholder="Login" required>
-          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          <mat-error *ngIf="loginForm.invalid">You must enter a value</mat-error>
         </mat-form-field>
 
         <mat-form-field>
           <input matInput ngModel type="password" name="password" placeholder="Password" required>
-          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          <mat-error *ngIf="loginForm.invalid">You must enter a value</mat-error>
         </mat-form-field>
 
-        <button mat-button type="submit" [disabled]="!formControl.valid">
+        <button mat-button type="submit" [disabled]="!loginForm.valid">
           Sign In
         </button>
       </form>
     </mat-tab>
 
     <mat-tab label="Register">
-      <form mat-dialog-content (ngSubmit)="onRegister(formControl.value)" #formControl="ngForm">
+      <form mat-dialog-content (ngSubmit)="onRegister(registerForm.value)" #registerForm="ngForm">
         <mat-form-field>
           <input matInput ngModel name="login" placeholder="Login" required>
-          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          <mat-error *ngIf="registerForm.invalid">You must enter a value</mat-error>
         </mat-form-field>
 
         <mat-form-field>
           <input matInput ngModel type="password" name="password" placeholder="Password" required>
-          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          <mat-error *ngIf="registerForm.invalid">You must enter a value</mat-error>
         </mat-form-field>
 
         <mat-form-field>
           <input matInput ngModel type="password" name="passwordConfirmation" placeholder="Password Confirmation" required>
-          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          <mat-error *ngIf="registerForm.invalid">You must enter a value</mat-error>
         </mat-form-field>
 
-        <button mat-button type="submit" [disabled]="!formControl.valid">
+        <button mat-button type="submit" [disabled]="!registerForm.valid">
           Sign Up
         </button>
       </form>

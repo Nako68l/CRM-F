@@ -2,13 +2,13 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Employee} from "../models/employee";
 import {Observable} from "rxjs";
+import {API_PREFIX} from "../constants/constants";
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeApiService {
-  private readonly API_PREFIX = '/api'
-  private readonly API_FEATURE = this.API_PREFIX + '/employees'
+  private readonly API_FEATURE = API_PREFIX + '/employees'
 
   constructor(private http: HttpClient) {
   }
