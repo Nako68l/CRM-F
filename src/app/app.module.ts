@@ -23,13 +23,17 @@ import {MatNativeDateModule} from "@angular/material/core";
 import {MatIconModule} from "@angular/material/icon";
 import {TruncateModule} from "ng2-truncate";
 import {DeleteEmployeeDialogComponent} from "./components/dialogs/delete-employee.dialog/delete-employee.dialog.component";
+import { AuthComponent } from './components/auth/auth.component';
+import {MatCardModule} from "@angular/material/card";
+import {MatTabsModule} from "@angular/material/tabs";
 
 @NgModule({
   declarations: [
     AppComponent,
     WorkersDashboardComponent,
     AddEmployeeDialogComponent,
-    DeleteEmployeeDialogComponent
+    DeleteEmployeeDialogComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +54,8 @@ import {DeleteEmployeeDialogComponent} from "./components/dialogs/delete-employe
     MatDatepickerModule,
     MatNativeDateModule,
     MatIconModule,
+    MatCardModule,
+    MatTabsModule,
 
     TruncateModule
   ],
