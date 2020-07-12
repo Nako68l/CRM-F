@@ -9,5 +9,5 @@ export class Employee {
   contactInformation: string;
   salary: number;
   _id?: string;
-  created_at?: Date;
+  createdAt?: Date;
 }

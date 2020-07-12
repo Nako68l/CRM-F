@@ -25,6 +25,7 @@ import {AuthComponent} from './components/auth/auth.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatTabsModule} from "@angular/material/tabs";
 import {TokenInterceptor} from "./interceptors/token.interceptor";
+import {ToastrModule} from "ngx-toastr";
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import {TokenInterceptor} from "./interceptors/token.interceptor";
     MatCardModule,
     MatTabsModule,
 
-    TruncateModule
+    TruncateModule,
+    ToastrModule.forRoot(),
   ],
   providers: [
     MatDatepickerModule,

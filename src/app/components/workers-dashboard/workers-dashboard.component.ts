@@ -9,6 +9,7 @@ import {EmployeeApiService} from "../../services/employee-api.service";
 import {merge, of} from "rxjs";
 import {catchError, startWith, switchMap} from "rxjs/operators";
 import {DeleteEmployeeDialogComponent} from "../dialogs/delete-employee.dialog/delete-employee.dialog.component";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-workers-dashboard',
@@ -25,6 +26,7 @@ export class WorkersDashboardComponent implements OnInit, AfterViewInit {
   constructor(
     private employeeApiService: EmployeeApiService,
     private dialog: MatDialog,
+    private toastr: ToastrService
   ) {
     this.dataSource = new MatTableDataSource([]);
   }
@@ -67,6 +69,7 @@ export class WorkersDashboardComponent implements OnInit, AfterViewInit {
       this.employeeApiService.addOne(employee).subscribe(employee => {
         this.dataSource.data.push(employee);
         this.refreshTable();
+        this.toastr.success(`${employee.fullName} was created` )
       })
     });
   }
@@ -81,6 +84,7 @@ export class WorkersDashboardComponent implements OnInit, AfterViewInit {
       this.employeeApiService.update(employee).subscribe(employee => {
         this.dataSource.data[index] = employee;
         this.refreshTable();
+        this.toastr.success(`${employee.fullName} was edited` )
       })
     });
   }
@@ -95,6 +99,7 @@ export class WorkersDashboardComponent implements OnInit, AfterViewInit {
       this.employeeApiService.remove(employee).subscribe(() => {
         this.dataSource.data.splice(index, 1);
         this.refreshTable();
+        this.toastr.success(`${employee.fullName} was removed` )
       })
     });
   }

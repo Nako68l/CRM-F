@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, Validators} from "@angular/forms";
 import {AuthCreds, RegistrationCreds} from "../../models/registration-creds";
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
 import {HttpErrorResponse} from "@angular/common/http";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-auth',
@@ -11,40 +11,34 @@ import {HttpErrorResponse} from "@angular/common/http";
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent implements OnInit {
-
-  loginForm = new FormControl('', [Validators.required]);
-  registrationForm = new FormControl('', [Validators.required]);
-
   constructor(
     private authService: AuthService,
-    private router: Router
-  ) {
-  }
+    private router: Router,
+    private toastr: ToastrService
+  ) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   onLogin(creds: AuthCreds) {
     this.authService.login(creds).subscribe(() => {
-        alert('success')
         this.router.navigateByUrl('')
       },
-      err => {
-        console.warn(err);
-        alert('Login failed')
+      (err: HttpErrorResponse) => {
+        this.toastr.error(err.error.message, 'Login failed')
       })
   }
 
   onRegister(creds: RegistrationCreds) {
     if (creds.password !== creds.passwordConfirmation) {
-      return alert('Passwords do not match')
+      return this.toastr.error('Passwords do not match', 'Registration failed')
     }
     const {passwordConfirmation, ...userCreds} = creds
     this.authService.register(userCreds).subscribe(() => {
+        this.toastr.success('Your accout was created successfully')
         this.router.navigateByUrl('')
       },
       (err: HttpErrorResponse) => {
-        alert('Registration failed\n' + err.error.message)
+        this.toastr.error(err.error.message, 'Registration failed')
       })
   }
 }
