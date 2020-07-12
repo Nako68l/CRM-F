@@ -2,13 +2,13 @@
 
 <form mat-dialog-content (submit)="onSubmit()" #formControl="ngForm">
   <mat-form-field>
-    <input matInput name="fullName" placeholder="Full name" [(ngModel)]="data.fullName" required>
+    <input matInput name="fullName" placeholder="Full name" [(ngModel)]="employee.fullName" required>
     <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>Position</mat-label>
-    <mat-select name="position" [(ngModel)]="data.position" required>
+    <mat-select name="position" [(ngModel)]="employee.position" required>
       <mat-option *ngFor="let position of POSITIONS" [value]="position">
         {{position}}
       </mat-option>
@@ -18,14 +18,14 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Birthday</mat-label>
-    <input matInput name="birthday" [matDatepicker]="picker" [min]="minBirthdayDate" [max]="maxBirthdayDate" [(ngModel)]="data.birthday" required>
+    <input matInput name="birthday" [matDatepicker]="picker" [min]="minBirthdayDate" [max]="maxBirthdayDate" [(ngModel)]="employee.birthday" required>
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker [startView]="'multi-year'"></mat-datepicker>
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>Gender</mat-label>
-    <mat-select name="gender" [(ngModel)]="data.gender">
+    <mat-select name="gender" [(ngModel)]="employee.gender">
       <mat-option *ngFor="let gender of GENDERS" [value]="gender">
         {{gender}}
       </mat-option>
@@ -34,20 +34,20 @@
   </mat-form-field>
 
   <mat-form-field>
-    <textarea matInput name="contactInformation" placeholder="Contact information" [(ngModel)]="data.contactInformation"></textarea>
+    <textarea matInput name="contactInformation" placeholder="Contact information" [(ngModel)]="employee.contactInformation"></textarea>
     <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
   </mat-form-field>
 
   <mat-form-field>
     <span matPrefix>$&nbsp;</span>
-    <input matInput name="salary" placeholder="Salary" [(ngModel)]="data.salary" type="number">
+    <input matInput name="salary" placeholder="Salary" [(ngModel)]="employee.salary" type="number">
   </mat-form-field>
 </form>
 
 
 <div mat-dialog-actions>
   <button mat-button (click)="onCancel()" tabindex="-1">Cancel</button>
-  <button mat-button type="submit" [disabled]="!formControl.valid" [mat-dialog-close]="data">
+  <button mat-button type="submit" [disabled]="!formControl.valid" [mat-dialog-close]="employee">
     Save
   </button>
 </div>

@@ -9,6 +9,7 @@ import {Employee} from "../../models/employee";
 import {EmployeeApiService} from "../../services/employee-api.service";
 import {merge, of} from "rxjs";
 import {catchError, startWith, switchMap} from "rxjs/operators";
+import {DeleteEmployeeDialogComponent} from "../dialogs/delete-employee.dialog/delete-employee.dialog.component";
 
 @Component({
   selector: 'app-workers-dashboard',
@@ -74,8 +75,18 @@ export class WorkersDashboardComponent implements OnInit, AfterViewInit {
 
   }
 
-  deleteEmployee() {
+  removeEmployee(employee: Employee, index: number) {
+    const dialogRef = this.dialog.open(DeleteEmployeeDialogComponent, {
+      data: employee
+    });
 
+    dialogRef.afterClosed().subscribe(employee => {
+      if (!employee) return;
+      this.employeeApiService.remove(employee).subscribe(() => {
+        this.dataSource.data.splice(index, 1);
+        this.refreshTable();
+      })
+    });
   }
 
   private refreshTable() {

@@ -23,14 +23,14 @@ export class AddEmployeeDialogComponent {
   ]);
 
   constructor(private dialogRef: MatDialogRef<AddEmployeeDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: Employee,
+              @Inject(MAT_DIALOG_DATA) public employee: Employee,
               private dataService: DataService) {
     this.setDefaultValues()
   }
 
   private setDefaultValues(): void {
-    this.data.gender = Gender.MALE
-    this.data.salary = 0
+    this.employee.gender = Gender.MALE
+    this.employee.salary = 0
   }
 
   getErrorMessage() {
@@ -44,7 +44,7 @@ export class AddEmployeeDialogComponent {
   }
 
   onSubmit(): void {
-    this.dataService.addEmployee(this.data);
+    this.dataService.addEmployee(this.employee);
   }
 
   private getMaxBirthdayDate(): Date {

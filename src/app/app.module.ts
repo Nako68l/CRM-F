@@ -22,12 +22,14 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatIconModule} from "@angular/material/icon";
 import {TruncateModule} from "ng2-truncate";
+import {DeleteEmployeeDialogComponent} from "./components/dialogs/delete-employee.dialog/delete-employee.dialog.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     WorkersDashboardComponent,
-    AddEmployeeDialogComponent
+    AddEmployeeDialogComponent,
+    DeleteEmployeeDialogComponent
   ],
   imports: [
     BrowserModule,

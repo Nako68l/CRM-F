@@ -38,7 +38,7 @@ export class DataService {
     this.dialogData = employee;
   }
 
-  deleteEmployee (id: number): void {
+  deleteEmployee (id: string): void {
     console.log(id);
   }
 }
