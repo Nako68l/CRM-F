@@ -2,8 +2,8 @@ import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {FormControl, Validators} from "@angular/forms";
 import {Employee} from "../../../models/employee";
-import {Gender} from "../../../../../../CRM-B/src/enums/gender.enum";
-import {Position} from "../../../../../../CRM-B/src/enums/position.enum";
+import {EmployeePosition} from "../../../enums/position.enum";
+import {Gender} from "../../../enums/gender.enum";
 
 @Component({
   selector: 'app-add-employee.dialog',
@@ -16,7 +16,7 @@ export class AddEmployeeDialogComponent {
   minBirthdayDate = this.getMinBirthdayDate();
   maxBirthdayDate = this.getMaxBirthdayDate();
   GENDERS = Object.values(Gender);
-  POSITIONS = Object.values(Position);
+  POSITIONS = Object.values(EmployeePosition);
 
   formControl = new FormControl('', [
     Validators.required

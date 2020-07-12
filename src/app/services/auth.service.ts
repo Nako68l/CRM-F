@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {AuthCreds} from "../models/registration-creds";
-import {API_PREFIX} from "../constants/constants";
+import {API_PREFIX} from "../enums/constants";
 import {Observable} from "rxjs";
 import {tap} from "rxjs/operators";
 

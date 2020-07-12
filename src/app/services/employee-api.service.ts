@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Employee} from "../models/employee";
 import {Observable} from "rxjs";
-import {API_PREFIX} from "../constants/constants";
+import {API_PREFIX} from "../enums/constants";
 
 @Injectable({
   providedIn: 'root'
