@@ -8,10 +8,15 @@ import {Observable} from "rxjs";
 })
 export class EmployeeApiService {
   private readonly API_PREFIX = '/api'
+  private readonly API_FEATURE = this.API_PREFIX+ '/employees'
 
   constructor(private http: HttpClient) { }
 
-  addEmployee(employee: Employee): Observable<Employee> {
-    return this.http.post<Employee>(this.API_PREFIX+ '/employees', employee);
+  getAll(): Observable<Employee[]> {
+    return this.http.get<Employee[]>(this.API_FEATURE)
+  }
+
+  addOne(employee: Employee): Observable<Employee> {
+    return this.http.post<Employee>(this.API_FEATURE, employee);
   }
 }

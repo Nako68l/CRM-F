@@ -21,6 +21,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatIconModule} from "@angular/material/icon";
+import {TruncateModule} from "ng2-truncate";
 
 @NgModule({
   declarations: [
@@ -46,8 +47,9 @@ import {MatIconModule} from "@angular/material/icon";
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatIconModule
+    MatIconModule,
 
+    TruncateModule
   ],
   providers: [DataService, MatDatepickerModule],
   bootstrap: [AppComponent]
