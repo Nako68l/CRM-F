@@ -3,6 +3,7 @@ import {FormControl, Validators} from "@angular/forms";
 import {AuthCreds, RegistrationCreds} from "../../models/registration-creds";
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-auth',
@@ -43,9 +44,8 @@ export class AuthComponent implements OnInit {
     this.authService.register(userCreds).subscribe(() => {
         this.router.navigateByUrl('')
       },
-      err => {
-        console.warn(err);
-        alert('Registration failed')
+      (err: HttpErrorResponse) => {
+        alert('Registration failed\n' + err.error.message)
       })
   }
 }
