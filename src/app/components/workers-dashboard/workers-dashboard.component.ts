@@ -6,6 +6,7 @@ import {AddEmployeeDialogComponent} from "../dialogs/add-employee.dialog/add-emp
 import {DataService} from "../../services/data.service";
 import {MatDialog} from "@angular/material/dialog";
 import {Employee} from "../../models/employee";
+import {EmployeeApiService} from "../../services/employee-api.service";
 
 @Component({
   selector: 'app-workers-dashboard',
@@ -20,6 +21,7 @@ export class WorkersDashboardComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(
+    private employeeApiService: EmployeeApiService,
     private dataService: DataService,
     private dialog: MatDialog,
   ) {
@@ -49,11 +51,8 @@ export class WorkersDashboardComponent implements OnInit {
       data: { }
     });
 
-    dialogRef.afterClosed().subscribe((result: Employee) => {
-      console.log('result ', result);
-      if (result) {
-        console.log(this.dataService.getDialogData());
-      }
+    dialogRef.afterClosed().subscribe((employee: Employee) => {
+      this.employeeApiService.addEmployee(employee).subscribe(s => console.log('newEmp', s))
     });
   }
 }

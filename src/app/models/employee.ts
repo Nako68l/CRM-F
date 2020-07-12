@@ -8,5 +8,6 @@ export class Employee {
   gender: Gender;
   contactInformation: string;
   salary: number;
+  _id?: string;
   created_at?: Date;
 }
