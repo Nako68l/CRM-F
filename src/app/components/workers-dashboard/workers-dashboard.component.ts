@@ -3,9 +3,9 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatSort} from "@angular/material/sort";
 import {AddEmployeeDialogComponent} from "../dialogs/add-employee.dialog/add-employee.dialog.component";
-import {Employee} from "../../models/employee";
 import {DataService} from "../../services/data.service";
 import {MatDialog} from "@angular/material/dialog";
+import {Employee} from "../../models/employee";
 
 @Component({
   selector: 'app-workers-dashboard',

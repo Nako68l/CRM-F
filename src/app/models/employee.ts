@@ -1,4 +1,5 @@
-import {Gender} from "../enums/gender.enum";
+import {Position} from "../../../../CRM-B/src/enums/position.enum";
+import {Gender} from "../../../../CRM-B/src/enums/gender.enum";
 
 export class Employee {
   fullName: string;

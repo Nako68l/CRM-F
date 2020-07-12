@@ -1,10 +1,10 @@
 import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {FormControl, Validators} from "@angular/forms";
-import {Employee} from "../../../models/employee";
 import {DataService} from "../../../services/data.service";
-import {Gender} from "../../../enums/gender.enum";
-import {Position} from "../../../enums/position.enum";
+import {Employee} from "../../../models/employee";
+import {Gender} from "../../../../../../CRM-B/src/enums/gender.enum";
+import {Position} from "../../../../../../CRM-B/src/enums/position.enum";
 
 @Component({
   selector: 'app-add-employee.dialog',
