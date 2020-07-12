@@ -34,6 +34,8 @@ export class WorkersDashboardComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    this.dataSource.filterPredicate = (employee: Employee, filter: string) =>
+      employee.fullName.toLowerCase().includes(filter.toLowerCase());
   }
 
   ngAfterViewInit() {
@@ -59,12 +61,12 @@ export class WorkersDashboardComponent implements OnInit, AfterViewInit {
 
   addEmployee() {
     const dialogRef = this.dialog.open(AddEmployeeDialogComponent, {
-      data: { }
+      data: {}
     });
 
     dialogRef.afterClosed().subscribe((employee: Employee) => {
       if (!employee) return;
-      this.employeeApiService.addOne(employee).subscribe( employee => {
+      this.employeeApiService.addOne(employee).subscribe(employee => {
         this.dataSource.data.push(employee);
         this.refreshTable();
       })
@@ -73,12 +75,12 @@ export class WorkersDashboardComponent implements OnInit, AfterViewInit {
 
   editEmployee(employee: Employee, index: number) {
     const dialogRef = this.dialog.open(AddEmployeeDialogComponent, {
-      data: { ...employee }
+      data: {...employee}
     });
 
     dialogRef.afterClosed().subscribe((employee: Employee) => {
       if (!employee) return;
-      this.employeeApiService.update(employee).subscribe( employee => {
+      this.employeeApiService.update(employee).subscribe(employee => {
         this.dataSource.data[index] = employee;
         this.refreshTable();
       })
